@@ -22,15 +22,18 @@ jobs:
 
       - name: Build with Buildozer
         run: |
+          # buildozer.spec မရှိရင် အရင်ဆောက်မယ်
           if [ ! -f buildozer.spec ]; then buildozer init; fi
           
-          # Android API levels ညှိနှိုင်းခြင်း
+          # android.minapi ကို 24 ပြောင်းမယ်
           sed -i 's/^android.minapi = 21/android.minapi = 24/' buildozer.spec
           
-          # အရေးကြီးသည်- build environment ကို clean အရင်လုပ်ပါမယ်
-          buildozer android clean
+          # Folder ရှိမှသာ clean လုပ်ဖို့ စစ်ဆေးချက် ထည့်ထားပါတယ်
+          if [ -d ".buildozer" ]; then
+            buildozer android clean
+          fi
           
-          # Build process စတင်ပါ
+          # Build စတင်ပါ
           yes | buildozer -v android debug
 
       - name: Upload APK
