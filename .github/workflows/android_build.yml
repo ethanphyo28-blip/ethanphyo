@@ -16,17 +16,21 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          # လိုအပ်တဲ့ build tools တွေ အကုန်ပါအောင် ထည့်ထားပါတယ်
-          sudo apt install -y build-essential git python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good libsqlite3-dev sqlite3 bzip2 libbz2-dev libssl-dev openssl libgdbm-dev libgdbm-compat-dev liblzma-dev libreadline-dev libncursesw5-dev libffi-dev uuid-dev libtool autoconf automake pkg-config
+          sudo apt install -y build-essential git python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good libsqlite3-dev sqlite3 bzip2 libbz2-dev libssl-dev openssl libgdbm-dev libgdbm-compat-dev liblzma-dev libreadline-dev libncursesw5-dev libffi-dev uuid-dev libtool autoconf automake pkg-config libtool-bin
           pip install --upgrade pip
           pip install buildozer cython==0.29.33
 
       - name: Build with Buildozer
         run: |
           if [ ! -f buildozer.spec ]; then buildozer init; fi
-          # android.minapi ကို 24 ပြောင်းဖို့ သေချာအောင် လုပ်ပါ
+          
+          # Android API levels ညှိနှိုင်းခြင်း
           sed -i 's/^android.minapi = 21/android.minapi = 24/' buildozer.spec
-          # log_level = 2 ပြောင်းလိုက်ရင် error ကို အသေးစိတ် မြင်ရပါလိမ့်မယ်
+          
+          # အရေးကြီးသည်- build environment ကို clean အရင်လုပ်ပါမယ်
+          buildozer android clean
+          
+          # Build process စတင်ပါ
           yes | buildozer -v android debug
 
       - name: Upload APK

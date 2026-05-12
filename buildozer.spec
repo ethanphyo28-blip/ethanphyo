@@ -5,8 +5,7 @@ package.domain = org.manus
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 1.0.0
-requirements = python3,kivy==2.3.0,kivymd==1.2.0,requests,sqlite3,matplotlib,numpy,pillow
-
+requirements = python3,kivy==2.3.0,kivymd==1.2.0,requests,sqlite3
 orientation = portrait
 osx.python_version = 3
 osx.kivy_version = 1.9.1
