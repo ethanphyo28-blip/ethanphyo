@@ -5,7 +5,7 @@ package.domain = org.manus
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 1.0.0
-requirements = python3,kivy==2.3.0,kivymd==1.2.0,requests,urllib3,certifi,idna,charset-normalizer,sqlite3,matplotlib,numpy,pillow,opencv-python-headless
+requirements = python3,kivy==2.3.0,kivymd==1.2.0,requests,sqlite3,matplotlib,numpy,pillow
 
 orientation = portrait
 osx.python_version = 3
@@ -14,7 +14,7 @@ fullscreen = 0
 android.permissions = INTERNET, CAMERA, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
 android.api = 33
 android.minapi = 24
-android.sdk = 33
+#android.sdk = 33
 android.ndk = 25b
 android.skip_update = False
 android.accept_sdk_license = True
